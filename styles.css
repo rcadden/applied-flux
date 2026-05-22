@@ -3,7 +3,7 @@
    ============================================================ */
 :root {
   --bg:         #0e0e10;
-  --bg-alt:     #131315;
+  --bg-alt:     #18181b;
   --bg-card:    #161618;
   --text:       #f0ede8;
   --text-muted: #888;
@@ -258,7 +258,7 @@ a:focus-visible {
    SERVICES
    ============================================================ */
 .services {
-  padding: 8rem 0;
+  padding: 8rem 0 5rem;
   border-top: 1px solid var(--border);
 }
 
@@ -325,7 +325,7 @@ a:focus-visible {
    WORK / VENTURES
    ============================================================ */
 .work {
-  padding: 8rem 0;
+  padding: 5rem 0 8rem;
   border-top: 1px solid var(--border);
 }
 
