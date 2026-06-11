@@ -2,16 +2,15 @@
  * POST /api/contact
  *
  * Accepts a contact form submission and emails it to hello@appliedflux.com
- * via Cloudflare Email Service (send_email binding).
+ * via the Resend API (Cloudflare's native Email Sending is paid-plan beta).
  *
- * Binding required in Cloudflare Pages dashboard:
- *   Type: Email binding
- *   Variable name: CONTACT_EMAIL
- *   Destination address: hello@appliedflux.com
- *
- * The sending address (from) must be a domain you have onboarded to
- * Cloudflare Email Service. Set the SEND_FROM_ADDRESS env var in the
- * Pages dashboard (e.g. "noreply@appliedflux.com").
+ * Owner setup:
+ *   1. Create a free Resend account (resend.com) — 3,000 emails/month tier.
+ *   2. Add and verify the appliedflux.com domain in Resend (DNS records).
+ *   3. Create an API key, then in Cloudflare Pages dashboard:
+ *      Pages → applied-flux → Settings → Environment variables (Production):
+ *        RESEND_API_KEY    = <the key>  (encrypt it)
+ *        SEND_FROM_ADDRESS = noreply@appliedflux.com  (optional, this is the default)
  */
 
 const MAX_MESSAGE_BYTES = 8000;
@@ -103,21 +102,34 @@ export async function onRequestPost(context) {
 </body>
 </html>`.trim();
 
-  // Send via Cloudflare Email Service binding
-  if (!env.CONTACT_EMAIL) {
-    console.error('CONTACT_EMAIL binding is not configured.');
+  // Send via Resend API
+  if (!env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not configured.');
     return jsonResponse({ ok: false, error: 'Email service is not configured.' }, 503);
   }
 
   try {
-    await env.CONTACT_EMAIL.send({
-      to: 'hello@appliedflux.com',
-      from: sendFrom,
-      replyTo: email || undefined,
-      subject,
-      text: textBody,
-      html: htmlBody,
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: `Applied Flux <${sendFrom}>`,
+        to: ['hello@appliedflux.com'],
+        reply_to: email || undefined,
+        subject,
+        text: textBody,
+        html: htmlBody,
+      }),
     });
+
+    if (!resendResponse.ok) {
+      const detail = await resendResponse.text();
+      console.error('Resend API error:', resendResponse.status, detail);
+      return jsonResponse({ ok: false, error: 'Could not send your message. Please email hello@appliedflux.com directly.' }, 500);
+    }
   } catch (err) {
     console.error('Email send failed:', err?.message ?? err);
     return jsonResponse({ ok: false, error: 'Could not send your message. Please email hello@appliedflux.com directly.' }, 500);

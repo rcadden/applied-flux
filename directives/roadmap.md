@@ -35,8 +35,8 @@
 - [x] JSON-LD structured data (ProfessionalService + Service) — GEO proof-of-craft
 - [x] Contact form — `functions/api/contact.js` (Email Service binding) + form on /websites
 - [x] `og:image` (1200×630) + Twitter card meta on both pages
-- [ ] **Owner: configure Email Sending domain + CONTACT_EMAIL binding + SEND_FROM_ADDRESS env var in Cloudflare dashboard** (see functions/api/contact.js header)
-- [ ] Verify form end-to-end in production after binding setup
+- [ ] **Owner: Resend setup — free account, verify appliedflux.com domain (DNS), add RESEND_API_KEY env var to Pages** (see functions/api/contact.js header)
+- [ ] Verify form end-to-end in production after Resend setup
 
 ## Future Explorations
 

@@ -46,3 +46,4 @@ Sprint 2 complete — redesign + first-person voice rewrite + `/websites` offer 
 ## Lessons Learned
 - Cloudflare Pages must be connected to GitHub manually via dashboard — cannot be done retroactively via API/CLI after repo creation.
 - OneDrive sync can touch files between Read and Write — re-read before rewriting if Write reports modification.
+- Cloudflare Email Sending (send_email binding) is beta + paid-plans-only as of June 2026 — contact form uses the Resend API instead (RESEND_API_KEY env var in Pages; free tier 3,000/mo).
