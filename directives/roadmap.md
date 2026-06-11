@@ -35,7 +35,7 @@
 - [x] JSON-LD structured data (ProfessionalService + Service) — GEO proof-of-craft
 - [x] Contact form built — `functions/api/contact.js` (Resend API) + form on /websites
 - [x] `og:image` (1200×630, copper headline) + Twitter card meta on both pages
-- [ ] **SHELVED 2026-06-11:** contact form hidden (`hidden` attr on #contactForm). Resend's free tier allows one domain and Ricky's is taken; $20/mo for more. Possible free path: send from the already-verified domain via `SEND_FROM_ADDRESS` env var. Revisit when ready — backend is done.
+- [ ] **SHELVED 2026-06-11:** contact form hidden (`hidden` attr on #contactForm). Resend free tier = one domain, currently thelede.info — sending from it is off-brand for Applied Flux (owner decision), and a second domain is $20/mo. Revisit when worth paying or when a better free transactional option appears. Backend (`functions/api/contact.js`) is done and dormant.
 
 ## Future Explorations
 
