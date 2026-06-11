@@ -25,9 +25,9 @@
 - [x] "View Architecture" links relabeled "Visit Site"
 - [x] Navio image hosted locally; headshot optimized
 - [x] Favicon (SVG)
-- [ ] **Visual QA pass — both pages, mobile + desktop** (dev preview)
-- [ ] Owner review of all new copy
-- [ ] Promote dev → main on explicit approval
+- [x] **Visual QA pass — both pages** (dev preview)
+- [x] Owner review of all new copy (7 revisions applied)
+- [x] Promote dev → main — **live in production 2026-06-11**
 
 ## Future Explorations
 

@@ -9,7 +9,7 @@ Convert two audiences to inquiries — no fluff, no theater:
 **Fully disconnected from Ricky's Balcom Agency work.** Never reference Balcom projects, clients, or capabilities on this site. Pre-Balcom career history (Sprint, RadioShack, Sabre, Smith & Nephew) is fine. Voice is first-person singular ("I", Ricky Cadden) — not corporate "we".
 
 ## Status
-Sprint 2 — Redesign + voice rewrite complete on `dev`, awaiting owner review. Email routing live. Site live on Cloudflare Pages (appliedflux.com).
+Sprint 2 complete — redesign + first-person voice rewrite + `/websites` offer page live in production (2026-06-11). Email routing live. Next: Future Explorations (contact form, og:image, sitemap/robots, JSON-LD).
 
 ## Tech Stack
 - **Markup:** Vanilla HTML5 (`index.html`, `websites.html`)
