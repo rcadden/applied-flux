@@ -1,10 +1,15 @@
 # Applied Flux LLC — Project Goals
 
 ## Primary Goal
-Convert qualified leads (Director, VP, C-Suite — marketing and operations) from skeptic to inquiry. The site is a credibility anchor, not a brochure.
+Two audiences, one site:
+1. **Senior leaders** (Director, VP, C-Suite — marketing and operations) evaluating consulting/automation work → homepage as credibility anchor.
+2. **Service-business owners** (locksmiths, plumbers, contractors) who need a website without learning a platform → `/websites` productized offer ($2,500 build / $500-mo retainer).
 
 ## Success Definition
-A senior ops or marketing leader lands on the site and thinks: *"These people know exactly what they're doing."* Then they email.
+A senior ops leader lands on the homepage and thinks: *"This person knows exactly what they're doing."* A shop owner lands on /websites and thinks: *"Finally, someone who speaks plainly and tells me the price."* Then they email.
+
+## Hard Constraints
+- **Zero connection to Balcom Agency work.** No projects, clients, or capabilities from Ricky's day job appear on this site. Pre-Balcom career history (Sprint, RadioShack, Sabre, etc.) is fine.
 
 ## Anti-Goals
 - Do not chase "agency website" conventions
@@ -14,10 +19,8 @@ A senior ops or marketing leader lands on the site and thinks: *"These people kn
 ## Success Metrics
 - First meaningful paint < 1.5s (Cloudflare edge)
 - Core Web Vitals: green across all three
-- Zero JS frameworks, zero tracking scripts, zero cookies
+- Zero JS frameworks; GTM/GA4 is the only third-party script (deliberate owner choice)
 
 ## Open Items
-- [ ] Confirm hello@appliedflux.com routing via Cloudflare Email Routing → personal inbox
-- [ ] Connect Cloudflare Pages to GitHub repo (manual — owner action)
-- [ ] Connect appliedflux.com domain in Cloudflare Pages
-- [ ] Confirm "View Architecture" final destinations for The Lede and Navio
+- [ ] Owner review of Sprint 2 redesign + copy (dev preview)
+- [ ] Promote dev → main on explicit approval
