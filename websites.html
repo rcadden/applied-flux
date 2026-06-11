@@ -242,8 +242,12 @@
         <h2 class="cta-heading animate">Tell me about<br><em>your</em> business.</h2>
         <p class="cta-sub animate">Tell me what you do and where you do it. I'll reply with a straight answer about whether I can help and exactly what it'll cost — not a sales sequence.</p>
 
-        <!-- Contact form -->
-        <form class="contact-form animate" id="contactForm" novalidate>
+        <!-- Contact form — SHELVED 2026-06-11: backend needs a Resend plan decision.
+             To re-enable: remove the hidden attribute below, restore the
+             "or email me directly:" prefix on the direct-email line, and set
+             RESEND_API_KEY (+ SEND_FROM_ADDRESS if sending from another domain)
+             in the Pages dashboard. Backend at functions/api/contact.js is ready. -->
+        <form class="contact-form animate" id="contactForm" novalidate hidden>
           <!-- Honeypot: hidden from real users, filled by bots -->
           <div class="contact-form__honeypot" aria-hidden="true">
             <label for="website">Leave this blank</label>
@@ -272,7 +276,7 @@
           </div>
         </form>
 
-        <p class="contact-form__direct animate">or email me directly: <a href="mailto:hello@appliedflux.com" class="cta-email cta-email--inline">hello@appliedflux.com</a></p>
+        <a href="mailto:hello@appliedflux.com" class="cta-email animate">hello@appliedflux.com</a>
       </div>
     </section>
 

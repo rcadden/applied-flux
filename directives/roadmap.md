@@ -33,10 +33,9 @@
 
 - [x] robots.txt + sitemap.xml + 404 page
 - [x] JSON-LD structured data (ProfessionalService + Service) — GEO proof-of-craft
-- [x] Contact form — `functions/api/contact.js` (Email Service binding) + form on /websites
-- [x] `og:image` (1200×630) + Twitter card meta on both pages
-- [ ] **Owner: Resend setup — free account, verify appliedflux.com domain (DNS), add RESEND_API_KEY env var to Pages** (see functions/api/contact.js header)
-- [ ] Verify form end-to-end in production after Resend setup
+- [x] Contact form built — `functions/api/contact.js` (Resend API) + form on /websites
+- [x] `og:image` (1200×630, copper headline) + Twitter card meta on both pages
+- [ ] **SHELVED 2026-06-11:** contact form hidden (`hidden` attr on #contactForm). Resend's free tier allows one domain and Ricky's is taken; $20/mo for more. Possible free path: send from the already-verified domain via `SEND_FROM_ADDRESS` env var. Revisit when ready — backend is done.
 
 ## Future Explorations
 
