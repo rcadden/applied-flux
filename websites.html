@@ -16,6 +16,11 @@
   <meta property="og:description" content="You're great at your trade. Your website should say so. $2,500 to build, everything handled.">
   <meta property="og:url" content="https://appliedflux.com/websites">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://appliedflux.com/images/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://appliedflux.com/images/og.png">
   <link rel="canonical" href="https://appliedflux.com/websites">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -23,6 +28,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Website design and management for service businesses",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Applied Flux LLC",
+      "url": "https://appliedflux.com",
+      "email": "hello@appliedflux.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Website build — starting price",
+        "price": "2500",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Monthly maintenance retainer",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "500",
+          "priceCurrency": "USD",
+          "unitText": "month",
+          "billingDuration": {
+            "@type": "QuantitativeValue",
+            "value": 1,
+            "unitCode": "MON"
+          }
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -194,8 +240,39 @@
     <section class="cta-section" id="contact">
       <div class="container">
         <h2 class="cta-heading animate">Tell me about<br><em>your</em> business.</h2>
-        <p class="cta-sub animate">Email me what you do and where you do it. I'll reply with a straight answer about whether I can help and exactly what it'll cost — not a sales sequence.</p>
-        <a href="mailto:hello@appliedflux.com" class="cta-email animate">hello@appliedflux.com</a>
+        <p class="cta-sub animate">Tell me what you do and where you do it. I'll reply with a straight answer about whether I can help and exactly what it'll cost — not a sales sequence.</p>
+
+        <!-- Contact form -->
+        <form class="contact-form animate" id="contactForm" novalidate>
+          <!-- Honeypot: hidden from real users, filled by bots -->
+          <div class="contact-form__honeypot" aria-hidden="true">
+            <label for="website">Leave this blank</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="contact-form__row">
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="cf-name">Your name</label>
+              <input class="contact-form__input" type="text" id="cf-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="cf-contact">Email or phone</label>
+              <input class="contact-form__input" type="text" id="cf-contact" name="email" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="contact-form__field">
+            <label class="contact-form__label" for="cf-message">Tell me about your business</label>
+            <textarea class="contact-form__input contact-form__textarea" id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+
+          <div class="contact-form__footer">
+            <button class="contact-form__submit" type="submit" id="cfSubmit">Send it →</button>
+            <p class="contact-form__status" id="cfStatus" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="contact-form__direct animate">or email me directly: <a href="mailto:hello@appliedflux.com" class="cta-email cta-email--inline">hello@appliedflux.com</a></p>
       </div>
     </section>
 
@@ -211,6 +288,72 @@
       </nav>
     </div>
   </footer>
+
+  <script>
+    // Contact form submit handler
+    (function () {
+      const form    = document.getElementById('contactForm');
+      const btn     = document.getElementById('cfSubmit');
+      const status  = document.getElementById('cfStatus');
+      const emailIn = document.getElementById('cf-contact');
+
+      if (!form) return;
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Re-use the email field value for both email and phone checks
+        const contactVal = emailIn.value.trim();
+
+        // Client-side guard: at least one contact method
+        if (!contactVal) {
+          setStatus('error', 'Please enter an email address or phone number.');
+          emailIn.focus();
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        setStatus('', '');
+
+        const body = {
+          name:    document.getElementById('cf-name').value.trim(),
+          email:   contactVal,
+          message: document.getElementById('cf-message').value.trim(),
+          website: document.getElementById('website').value, // honeypot
+        };
+
+        try {
+          const res  = await fetch('/api/contact', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(body),
+          });
+          const data = await res.json();
+
+          if (data.ok) {
+            form.reset();
+            setStatus('success', 'Got it — I\'ll reply within a business day.');
+            btn.textContent = 'Sent';
+          } else {
+            const msg = data.error || 'Something went wrong.';
+            setStatus('error', msg + ' Or email me directly at hello@appliedflux.com.');
+            btn.disabled    = false;
+            btn.textContent = 'Send it →';
+          }
+        } catch {
+          setStatus('error', 'Could not reach the server. Email me directly at hello@appliedflux.com.');
+          btn.disabled    = false;
+          btn.textContent = 'Send it →';
+        }
+      });
+
+      function setStatus(type, msg) {
+        status.textContent = msg;
+        status.className   = 'contact-form__status' + (type ? ' contact-form__status--' + type : '');
+      }
+    })();
+  </script>
 
   <script>
     // Sticky nav: add background after scroll threshold

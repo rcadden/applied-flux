@@ -821,6 +821,166 @@ a:focus-visible {
 }
 
 /* ============================================================
+   CONTACT FORM — dark band variant
+   ============================================================ */
+
+/* Honeypot field: visually hidden but not display:none (screen-readers ok) */
+.contact-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  tab-index: -1;
+}
+
+.contact-form {
+  max-width: 620px;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-form__row .contact-form__field {
+  margin-bottom: 0;
+}
+
+.contact-form__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dark-muted);
+}
+
+.contact-form__input {
+  background: transparent;
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  border-radius: 0;
+  /* Prevent browser autofill from overriding dark bg */
+  color-scheme: dark;
+}
+
+.contact-form__input::placeholder {
+  color: rgba(168, 158, 146, 0.45);
+}
+
+.contact-form__input:focus {
+  outline: none;
+  border-color: var(--dark-accent);
+  box-shadow: 0 0 0 2px rgba(224, 121, 63, 0.18);
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-form__footer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.contact-form__submit {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--dark-bg);
+  background-color: var(--dark-accent);
+  border: none;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  letter-spacing: 0.01em;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.contact-form__submit:hover {
+  opacity: 0.88;
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.contact-form__status {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--dark-muted);
+}
+
+.contact-form__status--success {
+  color: #8fcf9a;
+}
+
+.contact-form__status--error {
+  color: #e07777;
+}
+
+.contact-form__direct {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--dark-muted);
+  margin-top: 0;
+}
+
+/* Inline mailto link within the "or email me" line */
+.cta-email--inline {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-style: italic;
+  color: var(--dark-accent);
+  position: relative;
+  padding-bottom: 2px;
+  display: inline;
+}
+
+.cta-email--inline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--dark-accent);
+  transition: width 0.25s ease;
+}
+
+.cta-email--inline:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
    RESPONSIVE — TABLET (max 900px)
    ============================================================ */
 @media (max-width: 900px) {
@@ -927,5 +1087,15 @@ a:focus-visible {
     flex-direction: column;
     gap: 0.75rem;
     text-align: center;
+  }
+
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 }

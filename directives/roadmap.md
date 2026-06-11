@@ -29,12 +29,17 @@
 - [x] Owner review of all new copy (7 revisions applied)
 - [x] Promote dev → main — **live in production 2026-06-11**
 
+## Sprint 3 — Conversion & Discoverability
+
+- [x] robots.txt + sitemap.xml + 404 page
+- [x] JSON-LD structured data (ProfessionalService + Service) — GEO proof-of-craft
+- [x] Contact form — `functions/api/contact.js` (Email Service binding) + form on /websites
+- [x] `og:image` (1200×630) + Twitter card meta on both pages
+- [ ] **Owner: configure Email Sending domain + CONTACT_EMAIL binding + SEND_FROM_ADDRESS env var in Cloudflare dashboard** (see functions/api/contact.js header)
+- [ ] Verify form end-to-end in production after binding setup
+
 ## Future Explorations
 
-- Contact form (Cloudflare Pages Functions + email — no third-party)
 - Case study pages or a `/work` section with project deep-dives
-- `og:image` meta card for social sharing
-- robots.txt + sitemap.xml + 404 page
-- JSON-LD structured data (ProfessionalService) — GEO proof-of-craft
 - Blog or writing section (editorial, no CMS — static markdown)
-- GEO optimization pass (structured data, AI-crawler-friendly content architecture)
+- GEO optimization pass (AI-crawler-friendly content architecture, entity coverage)
