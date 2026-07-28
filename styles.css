@@ -1099,3 +1099,213 @@ a:focus-visible {
     gap: 1rem;
   }
 }
+
+/* ============================================================
+   DRYWATER PAGE — game landing + privacy policy
+   ============================================================ */
+.game-hero {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.game-icon {
+  width: 104px;
+  height: 104px;
+  border: 1px solid var(--border-card);
+  image-rendering: pixelated;
+}
+
+.game-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.game-privacy-link {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 2px;
+}
+
+.game-privacy-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.game-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--border-card);
+  padding: 0.6rem 1rem;
+}
+
+.mounts {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+  background-color: var(--bg-alt);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.stat-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.stat-table th,
+.stat-table td {
+  padding: 1rem 1.25rem 1rem 0;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.stat-table thead th {
+  border-top: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stat-table tbody th {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stat-table tbody td {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.stat-table tbody td:nth-child(2),
+.stat-table tbody td:nth-child(3),
+.stat-table tbody td:nth-child(4) {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.shots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+.shot {
+  background-color: #fffdf9;
+  border: 1px solid var(--border-card);
+}
+
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.shot figcaption {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.legal-section {
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+  /* clear the sticky nav when arriving via #privacy */
+  scroll-margin-top: 4.5rem;
+}
+
+.legal {
+  max-width: 680px;
+}
+
+.legal-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 2.25rem 0 0.65rem;
+}
+
+.legal p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.legal a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--border-card);
+}
+
+.legal a:hover {
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .shots-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .game-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .game-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .mounts,
+  .legal-section {
+    padding: 4rem 0;
+  }
+}
