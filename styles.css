@@ -1118,6 +1118,8 @@ a:focus-visible {
 }
 
 .game-actions {
+  /* shared control height so the status pill and Discord button line up exactly */
+  --action-h: 2.45rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -1139,15 +1141,54 @@ a:focus-visible {
 }
 
 .game-status {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--action-h);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   border: 1px solid var(--border-card);
-  padding: 0.6rem 1rem;
+  padding: 0 1rem;
+}
+
+/* Discord — Blurple per their brand guidelines; the mark is never recoloured */
+.discord-btn {
+  --blurple: #5865f2;
+  --blurple-deep: #4752c4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: var(--action-h);
+  padding: 0 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  background-color: var(--blurple);
+  border: 1px solid var(--blurple);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.discord-btn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: #fff;
+}
+
+.discord-btn:hover {
+  background-color: var(--blurple-deep);
+  border-color: var(--blurple-deep);
+}
+
+.discord-btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
 }
 
 .mounts {
