@@ -66,6 +66,7 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-wordmark">Applied Flux</a>
       <nav class="nav-links">
+        <a href="#play" class="nav-link">Play</a>
         <a href="#features" class="nav-link">The Game</a>
         <a href="#privacy" class="nav-cta">Privacy</a>
       </nav>
@@ -101,6 +102,25 @@
               <a href="#privacy" class="game-privacy-link">Privacy Policy →</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYABLE BUILD (itch.io) -->
+    <section class="play-section" id="play">
+      <div class="container">
+        <p class="section-label animate">Play it now</p>
+        <h2 class="section-heading animate">No install.<br>Just <em>ride</em>.</h2>
+
+        <!-- The iframe is injected by script above 700px only — a 1280x740 game
+             viewport squeezed onto a phone is unplayable, and this way mobile
+             visitors don't pay to download a build they can't use. Empty div
+             collapses via .play-frame:empty, leaving the itch.io link below. -->
+        <div class="play-frame animate" id="playFrame" data-embed-src="https://itch.io/embed-upload/17981614?color=23201b"></div>
+
+        <div class="play-meta animate">
+          <a href="https://rcadden.itch.io/drywater-valley" target="_blank" rel="noopener noreferrer" class="play-cta">Open on itch.io →</a>
+          <p class="play-note">The web build is a work in progress and best played on a desktop browser with a keyboard. Loading it runs the game from itch.io, not from this site.</p>
         </div>
       </div>
     </section>
@@ -226,8 +246,9 @@
           <h3>App permissions</h3>
           <p><em>Drywater</em> does not request or require access to your camera, contacts, microphone, or external storage.</p>
 
-          <h3>This website</h3>
-          <p>The statements above describe the <em>Drywater</em> application. This page you're reading is part of appliedflux.com, which uses Google Analytics to count visits — standard web analytics, unrelated to the game, and not connected to it in any way.</p>
+          <h3>This website, and the playable web build</h3>
+          <p>The statements above describe the <em>Drywater</em> Android application. This page you're reading is part of appliedflux.com, which uses Google Analytics to count visits — standard web analytics, unrelated to the game and not connected to it.</p>
+          <p>This page also embeds a playable web build hosted by <a href="https://itch.io" target="_blank" rel="noopener noreferrer">itch.io</a>. That build is served by itch.io, not by Applied Flux, and itch.io may set its own cookies and collect its own usage data under <a href="https://itch.io/docs/legal/privacy-policy" target="_blank" rel="noopener noreferrer">their privacy policy</a>. The zero-collection statements above apply to the Android application; they do not extend to itch.io. Below 700px viewport width the embed is not loaded at all, and no request is made to itch.io unless you follow a link.</p>
 
           <h3>Questions</h3>
           <p>Email <a href="mailto:hello@appliedflux.com">hello@appliedflux.com</a>.</p>
@@ -257,6 +278,25 @@
       </nav>
     </div>
   </footer>
+
+  <script>
+    // itch.io playable build: inject the iframe on wide viewports only.
+    // A 1280x740 game viewport is unplayable on a phone, and an untouched
+    // embed would still cost mobile visitors the download, so below 700px
+    // the holder stays empty (and collapses) and the itch.io link carries it.
+    (function () {
+      const holder = document.getElementById('playFrame');
+      if (!holder || !window.matchMedia('(min-width: 700px)').matches) return;
+
+      const frame = document.createElement('iframe');
+      frame.src = holder.dataset.embedSrc;
+      frame.title = 'Drywater — playable web build on itch.io';
+      frame.loading = 'lazy';
+      frame.allow = 'fullscreen';
+      frame.allowFullscreen = true;
+      holder.appendChild(frame);
+    })();
+  </script>
 
   <script>
     // Sticky nav: add background after scroll threshold
