@@ -109,20 +109,18 @@
     </section>
 
     <!-- TRAILER -->
-    <!-- YouTube, click-to-load. The poster is served from this site, so no request
-         reaches YouTube until the visitor presses play; the iframe is then injected
-         from youtube-nocookie.com. Without JS the link simply opens YouTube.
-         Video: https://youtu.be/o6Nf3IV8wiU -->
+    <!-- YouTube embed via youtube-nocookie.com, lazy-loaded. Video: https://youtu.be/o6Nf3IV8wiU -->
     <section class="trailer-section" id="trailer">
       <div class="container">
         <p class="section-label animate">Trailer</p>
         <h2 class="section-heading animate">Thirty seconds<br>on the <em>frontier</em>.</h2>
-        <div class="trailer-frame animate" id="trailerFrame" data-video-id="o6Nf3IV8wiU">
-          <a href="https://www.youtube.com/watch?v=o6Nf3IV8wiU" target="_blank" rel="noopener noreferrer" class="trailer-play">
-            <img src="images/drywater/trailer-poster.jpg" alt="" width="1280" height="720" loading="lazy">
-            <span class="trailer-play-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Play the Drywater trailer (loads YouTube)</span>
-          </a>
+        <div class="trailer-frame animate">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/o6Nf3IV8wiU?rel=0"
+            title="Drywater — trailer on YouTube"
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -293,7 +291,7 @@
           <h3>This website, and the playable web build</h3>
           <p>The statements above describe the <em>Drywater</em> Android application. This page you're reading is part of appliedflux.com, which uses Google Analytics to count visits — standard web analytics, unrelated to the game and not connected to it.</p>
           <p>This page also embeds a playable web build hosted by <a href="https://itch.io" target="_blank" rel="noopener noreferrer">itch.io</a>. That build is served by itch.io, not by Applied Flux, and itch.io may set its own cookies and collect its own usage data under <a href="https://itch.io/docs/legal/privacy-policy" target="_blank" rel="noopener noreferrer">their privacy policy</a>. The zero-collection statements above apply to the Android application; they do not extend to itch.io. Below 700px viewport width the embed is not loaded at all, and no request is made to itch.io unless you follow a link.</p>
-          <p>The trailer on this page is hosted by <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>. Until you press play, the preview image is served from this site and nothing is requested from YouTube. Pressing play loads YouTube's player from youtube-nocookie.com, and from then on YouTube's own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> applies to that player, not this one.</p>
+          <p>The trailer on this page is hosted by <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a> and embedded from youtube-nocookie.com, which loads when you scroll the trailer into view. YouTube's own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> applies to that player, not this one.</p>
 
           <h3>Questions</h3>
           <p>Email <a href="mailto:hello@appliedflux.com">hello@appliedflux.com</a>.</p>
@@ -340,26 +338,6 @@
       frame.allow = 'fullscreen';
       frame.allowFullscreen = true;
       holder.appendChild(frame);
-    })();
-  </script>
-
-  <script>
-    // Trailer: swap the local poster for the YouTube player only on click, so
-    // no request reaches YouTube until the visitor chooses to watch.
-    (function () {
-      const holder = document.getElementById('trailerFrame');
-      const link = holder && holder.querySelector('.trailer-play');
-      if (!link) return;
-
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const frame = document.createElement('iframe');
-        frame.src = 'https://www.youtube-nocookie.com/embed/' + holder.dataset.videoId + '?autoplay=1&rel=0';
-        frame.title = 'Drywater — trailer on YouTube';
-        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-        frame.allowFullscreen = true;
-        holder.replaceChildren(frame);
-      });
     })();
   </script>
 
