@@ -1,0 +1,2 @@
+# Wrangler local state (Cloudflare CLI cache, not source)
+.wrangler/
