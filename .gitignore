@@ -1,2 +1,8 @@
 # Wrangler local state (Cloudflare CLI cache, not source)
 .wrangler/
+
+# Windows / OneDrive cruft — this repo syncs through OneDrive, so these
+# turn up inside image folders and ride along on a careless `git add -A`
+Thumbs.db
+ehthumbs.db
+desktop.ini
